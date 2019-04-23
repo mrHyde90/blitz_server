@@ -2,7 +2,7 @@
   "name": "blitz",
   "version": "1.0.0",
   "description": "aplicacion de blitz",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build-ts",
