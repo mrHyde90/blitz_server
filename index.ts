@@ -32,7 +32,7 @@ server.app.get("/", (req: Request, res: Response, next: Function)=>{
     res.send("Hola amigos");
 });
 server.app.use("/empresas", empresaRoutes);
-server.app.use("/usuarios", userRoutes);
+//server.app.use("/usuarios", userRoutes);
 server.app.use("/espacios", espacioRoutes);
 
 server.start( 5000);
