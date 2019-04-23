@@ -1,5 +1,5 @@
 import User from "../models/usuario";
-//import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {Request, Response} from "express";
 import empresa from "../models/empresa";
@@ -8,7 +8,7 @@ import empresa from "../models/empresa";
 // Los controladores que el usuario puede hacer
 
 //Registrarse
-/*
+
 exports.user_registrarse = async (req: Request, res: Response, next: Function) => {
     try{
         const users = await User.find({email: req.body.email});
@@ -36,7 +36,7 @@ exports.user_registrarse = async (req: Request, res: Response, next: Function) =
     catch(err) {
         return res.status(500).json({err: err, message: "Usuario no pudo ser salvado"});
     }
-}*/
+}
 /*
 exports.obtener_usuario = async (req:Request, res: Response, next: Function) => {
     try{
@@ -60,7 +60,7 @@ exports.obtener_usuario = async (req:Request, res: Response, next: Function) => 
         return res.status(500).json({err: err, message: "usuario no pudo ser enviado"});
     }
     
-}
+}*/
 
 exports.user_iniciar_sesion = async (req: Request, res: Response, next: Function) => {
     try {
@@ -103,7 +103,7 @@ exports.user_iniciar_sesion = async (req: Request, res: Response, next: Function
             message: "Auth failed"
         });
     }
-}*/
+}
 
 exports.prueba = (req: Request, res: Response, next: Function) => {
     res.send("Hola amigos");
