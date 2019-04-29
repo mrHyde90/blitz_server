@@ -43,11 +43,10 @@ exports.crear_espacio = async (req: Request, res: Response, next: Function) => {
 
 exports.obtener_espacios = async (req: Request, res: Response, next: Function) => {
     try{
-        const espacios = await Espacio.find({empresaID: req.params.empresaID});
+        const espacios = await Espacio.find({empresaID: req.params.empresaID, apartado: false});
         const cleanEspacios = espacios.map(foundEspacio => {
             return{
                 numero: foundEspacio.numero,
-                apartado: foundEspacio.apartado,
                 _id: foundEspacio._id
             }
         });
