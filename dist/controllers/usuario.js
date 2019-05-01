@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var usuario_1 = __importDefault(require("../models/usuario"));
-var bcrypt_1 = __importDefault(require("bcrypt"));
+var bcryptjs_1 = __importDefault(require("bcryptjs"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 // Por defecto el usuario se guarda como esperar
 // Los controladores que el usuario puede hacer
@@ -58,7 +58,7 @@ exports.user_registrarse = function (req, res, next) { return __awaiter(_this, v
                 return [2 /*return*/, res.status(409).json({
                         message: "Mail exist"
                     })];
-            case 2: return [4 /*yield*/, bcrypt_1.default.hash(req.body.contraseña, 10)];
+            case 2: return [4 /*yield*/, bcryptjs_1.default.hash(req.body.contraseña, 10)];
             case 3:
                 hashh = _a.sent();
                 user = new usuario_1.default({
@@ -82,31 +82,6 @@ exports.user_registrarse = function (req, res, next) { return __awaiter(_this, v
         }
     });
 }); };
-/*
-exports.obtener_usuario = async (req:Request, res: Response, next: Function) => {
-    try{
-        const userId = req.params.id;
-        const userFind = await User.findById(userId);
-        if(userFind != undefined){
-            res.status(200).json({
-                nombre: userFind.nombre,
-                matricula: userFind.matricula,
-                email: userFind.email,
-                carrera: userFind.carrera
-            });
-        } else{
-            res.status(400).json({
-                message: "Usuario no encontrado"
-            });
-        }
-        
-    }
-    catch(err){
-        return res.status(500).json({err: err, message: "usuario no pudo ser enviado"});
-    }
-    
-}
-*/
 exports.user_iniciar_sesion = function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
     var user, result, token, err_2;
     return __generator(this, function (_a) {
@@ -122,7 +97,7 @@ exports.user_iniciar_sesion = function (req, res, next) { return __awaiter(_this
                             message: "Auth Failed, email does not recognized"
                         })];
                 }
-                return [4 /*yield*/, bcrypt_1.default.compare(req.body.contraseña, user.contraseña)];
+                return [4 /*yield*/, bcryptjs_1.default.compare(req.body.contraseña, user.contraseña)];
             case 2:
                 result = _a.sent();
                 //Si no hacen match, return

@@ -29,6 +29,9 @@ server.app.use(cors_1.default({
     origin: true,
     credentials: true
 }));
+server.app.get("/", function (req, res, next) {
+    res.send("Hola amigos");
+});
 server.app.use("/empresas", empresa_1.default);
 server.app.use("/usuarios", usuario_1.default);
 server.app.use("/espacios", espacio_1.default);

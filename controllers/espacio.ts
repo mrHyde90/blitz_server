@@ -98,19 +98,23 @@ exports.desapartar_lugar = async (req: Request, res: Response, next: Function) =
 exports.ver_espacio = async (req: Request, res: Response, next: Function) => {
     try{
         const espacioFound = await Espacio.findOne({"usuarioData.usuarioID": req.params.userID});
+        
         if(espacioFound != undefined){
+
             res.status(200).json({
-                _id: espacioFound._id,
                 numero: espacioFound.numero,
-                usuarioData: espacioFound.usuarioData,
-                apartado: espacioFound.apartado
+                nombreUsuario: espacioFound.usuarioData.nombreUsuario,
+                horaEntrada: espacioFound.usuarioData.horaEntrada,
+                horaSalida: espacioFound.usuarioData.horaSalida,
+                hay_espacio: true
             });
         } else {
             res.status(200).json({
-                _id: "",
                 numero: "",
-                usuarioData: "",
-                apartado: ""
+                nombreUsuario: "",
+                horaEntrada: "",
+                horaSalida: "",
+                hay_espacio: false
             });
         }
     }

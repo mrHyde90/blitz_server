@@ -86,13 +86,12 @@ exports.obtener_espacios = function (req, res, next) { return __awaiter(_this, v
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, espacio_1.default.find({ empresaID: req.params.empresaID })];
+                return [4 /*yield*/, espacio_1.default.find({ empresaID: req.params.empresaID, apartado: false })];
             case 1:
                 espacios = _a.sent();
                 cleanEspacios = espacios.map(function (foundEspacio) {
                     return {
                         numero: foundEspacio.numero,
-                        apartado: foundEspacio.apartado,
                         _id: foundEspacio._id
                     };
                 });
@@ -170,18 +169,20 @@ exports.ver_espacio = function (req, res, next) { return __awaiter(_this, void 0
                 espacioFound = _a.sent();
                 if (espacioFound != undefined) {
                     res.status(200).json({
-                        _id: espacioFound._id,
                         numero: espacioFound.numero,
-                        usuarioData: espacioFound.usuarioData,
-                        apartado: espacioFound.apartado
+                        nombreUsuario: espacioFound.usuarioData.nombreUsuario,
+                        horaEntrada: espacioFound.usuarioData.horaEntrada,
+                        horaSalida: espacioFound.usuarioData.horaSalida,
+                        hay_espacio: true
                     });
                 }
                 else {
                     res.status(200).json({
-                        _id: "",
                         numero: "",
-                        usuarioData: "",
-                        apartado: ""
+                        nombreUsuario: "",
+                        horaEntrada: "",
+                        horaSalida: "",
+                        hay_espacio: false
                     });
                 }
                 return [3 /*break*/, 3];
